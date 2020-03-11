@@ -7,13 +7,12 @@
 //
 
 import ObjectMapper
-import RealmSwift
 
 class CategoryDetail: Mappable {
     var categoryId : String?
     var categoryName : String?
     var categoryUrl : String?
-    
+        
     required init?(map: Map){
         
     }
@@ -29,15 +28,4 @@ class CategoryDetail: Mappable {
         categoryName <- map["categoryName"]
         categoryUrl <- map["categoryUrl"]
     }
-}
-
-class DatabaseCategoryDetail: Object {
-    @objc dynamic var categoryId : String = ""
-    @objc dynamic var categoryName : String = ""
-    @objc dynamic var categoryUrl : String = ""
-    
-    override class func primaryKey() -> String? {
-        return "categoryId"
-    }
-    
 }

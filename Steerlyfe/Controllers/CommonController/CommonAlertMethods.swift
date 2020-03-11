@@ -13,7 +13,7 @@ class CommonAlertMethods {
     let TAG = "CommonAlertMethods"
     static let alert = CommonAlertMethods()
     
-    func showConfirmationAlert(navigationController : UINavigationController?, title : String, message : String, yesText : String, noString : String, delegate : ConfirmationDialogDelegate) {
+    public static func showConfirmationAlert(navigationController : UINavigationController?, title : String, message : String, yesText : String, noString : String, delegate : ConfirmationDialogDelegate) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: yesText, style: UIAlertAction.Style.default, handler: { (data) in
             delegate.onConfirmationButtonPressed(yesPressed: true)

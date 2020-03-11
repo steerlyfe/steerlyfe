@@ -16,7 +16,9 @@ class SearchVC: UIViewController, ViewPagerControllerDelegate, ViewPagerControll
     var options:ViewPagerOptions!
     var viewPagerTabs : [ViewPagerTab] = []
     
+    @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var mainContainer: UIView!
+    @IBOutlet weak var searchLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,9 @@ class SearchVC: UIViewController, ViewPagerControllerDelegate, ViewPagerControll
         viewPagerTabs.append(ViewPagerTab(title: "Categories", imageName: "", isLocalImage: false))
         viewPagerTabs.append(ViewPagerTab(title: "Discover", imageName: "", isLocalImage: false))
         setViewPagerAdapter()
+        CommonMethods.addCardViewStyle(uiView: searchView, cornerRadius: searchView.frame.height / 2.0, shadowRadius: 0.0)
+        searchView.backgroundColor = UIColor.white
+        searchLabel.textColor = UIColor.myGreyColor
     }
     
     func setViewPagerAdapter()  {
@@ -74,6 +79,11 @@ class SearchVC: UIViewController, ViewPagerControllerDelegate, ViewPagerControll
     
     func tabsForPages() -> [ViewPagerTab] {
         return viewPagerTabs
+    }
+    
+    @IBAction func searchViewClicked(_ sender: Any) {
+        MyNavigations.goToCombinedSearch(navigationController: navigationController)
+//        MyNavigations.goToProductList(navigationController: navigationController, type: .searchProducts, pageTitle: "Search Products", categoryId: "", subStoreId: "", storeId: "")
     }
 }
 

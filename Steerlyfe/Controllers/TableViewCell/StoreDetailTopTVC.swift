@@ -20,6 +20,7 @@ class StoreDetailTopTVC: UITableViewCell {
     var data : StoreDetail?
     var delegate : ButtonPressedDelegate?
     
+    @IBOutlet weak var storeLogoBackView: UIView!
     @IBOutlet weak var writeReviewLabel: UILabel!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
@@ -42,14 +43,16 @@ class StoreDetailTopTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor(white: 1.0, alpha: 0.0)
-        CommonMethods.common.setRatingStarStyle(ratingView: ratingView)
-        menuButton.setTitleColor(UIColor.white, for: .normal)
-        locationButton.setTitleColor(UIColor.white, for: .normal)
+        CommonMethods.setRatingStarStyle(ratingView: ratingView)
+        CommonMethods.addRoundCornerFilled(uiview: menuButton, borderWidth: 0.0, borderColor: UIColor.black, backgroundColor: UIColor.black, cornerRadius: menuButton.frame.height / 2.0)
         writeReviewLabel.textColor = UIColor.myGreyColor
-        CommonMethods.common.makeRoundImageView(imageView: storeLogo, cornerRadius: 10.0)
-        CommonMethods.common.roundCornerView(uiView: messageView, cornerRadius: 25.0)
-        CommonMethods.common.roundCornerView(uiView: topRoundView, cornerRadius: 12.5)
-        CommonMethods.common.addCardViewStyle(uiView: storeInfoOuterView, cornerRadius: 10.0, shadowRadius: 10.0)
+        CommonMethods.roundCornerView(uiView: messageView, cornerRadius: 25.0)
+        CommonMethods.roundCornerView(uiView: topRoundView, cornerRadius: 12.5)
+        CommonMethods.addCardViewStyle(uiView: storeInfoOuterView, cornerRadius: 10.0, shadowRadius: 20.0, shadowColor: UIColor.colorPrimaryDarkTrans)
+        CommonMethods.addCardViewStyle(uiView: storeLogoBackView, cornerRadius: 10.0, shadowRadius: 20.0, shadowColor: UIColor.colorPrimaryDarkTrans)
+        CommonMethods.makeRoundImageView(imageView: storeLogo, cornerRadius: 10.0)
+        locationButton.setTitleColor(UIColor.white, for: .normal)
+        CommonMethods.roundCornerFilledGradient(uiView: locationButton, cornerRadius: locationButton.frame.height / 2.0 )
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -59,7 +62,7 @@ class StoreDetailTopTVC: UITableViewCell {
     func setDetail(data : StoreDetail?, height : CGFloat, delegate : ButtonPressedDelegate?) {
         self.data = data
         self.delegate = delegate
-        CommonMethods.common.showLog(tag: TAG, message: "height : \(height)")
+        CommonMethods.showLog(tag: TAG, message: "height : \(height)")
         topEmptyViewHeight.constant = height - UIApplication.shared.statusBarFrame.height - 100.0
 //        topEmptyViewHeight.constant = 10.0
         storeName.text = data?.storeName
@@ -85,7 +88,7 @@ class StoreDetailTopTVC: UITableViewCell {
         if value == ""{
             return ""
         }else{
-            return CommonMethods.common.getTimeStringFromTimeStamp(timeStamp: CommonMethods.common.getTimestampFromTimeString(dateString: value ?? ""))
+            return CommonMethods.getTimeStringFromTimeStamp(timeStamp: CommonMethods.getTimestampFromTimeString(dateString: value ?? ""))
         }
     }
     
@@ -101,6 +104,7 @@ class StoreDetailTopTVC: UITableViewCell {
     }
     
     @IBAction func addNewReview(_ sender: Any) {
+        
     }
     
     func showMarker(position: CLLocationCoordinate2D, markerImage : UIImage){

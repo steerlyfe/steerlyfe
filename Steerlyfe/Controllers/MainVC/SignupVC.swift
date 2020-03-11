@@ -14,6 +14,7 @@ class SignupVC: UIViewController, UITextViewDelegate{
     
     var phoneNumber : String = ""
     var keyboardSize : CGFloat = 0
+    var callingCode : String = ""
     private var termsHeightObserver: NSKeyValueObservation?
     
     @IBOutlet weak var nameView: UIView!
@@ -32,16 +33,17 @@ class SignupVC: UIViewController, UITextViewDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        CommonMethods.common.setNavigationBar(navigationController: navigationController, navigationItem: navigationItem, title: "Signup")
+        CommonMethods.setNavigationBar(navigationController: navigationController, navigationItem: navigationItem, title: "Signup")
     }
     
     func setUI() {
+        self.automaticallyAdjustsScrollViewInsets = false
         let borderWidth : CGFloat = 1.0
         let borderColor = UIColor.colorPrimaryDark
         signupButton.setTitleColor(UIColor.white, for: .normal)
-        CommonMethods.common.addRoundCornerStroke(uiview: nameView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
-        CommonMethods.common.addRoundCornerStroke(uiview: emailView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
-        CommonMethods.common.addRoundCornerFilled(uiview: signupButton, borderWidth: 1.0, borderColor: UIColor.colorPrimaryDark, backgroundColor: UIColor.colorPrimaryDark, cornerRadius: 20.0)
+        CommonMethods.addRoundCornerStroke(uiview: nameView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
+        CommonMethods.addRoundCornerStroke(uiview: emailView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
+        CommonMethods.addRoundCornerFilled(uiview: signupButton, borderWidth: 1.0, borderColor: UIColor.colorPrimaryDark, backgroundColor: UIColor.colorPrimaryDark, cornerRadius: 20.0)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         let text = "By clicking 'Signup' you are agree to our Terms & Conditions and Privacy Policy."
@@ -61,12 +63,12 @@ class SignupVC: UIViewController, UITextViewDelegate{
             NSAttributedString.Key.foregroundColor.rawValue: UIColor.colorPrimaryDark
             ] as! [NSAttributedString.Key : Any])
         
-        termsHeightObserver = termConditionTextView
-            .observe(\.contentSize,
-                     changeHandler: { [unowned self] (_, change) in
-                        guard let newHeight = change.newValue?.height else { return }
-                        self.termsHeightConstraint.constant = newHeight
-            })
+//        termsHeightObserver = termConditionTextView
+//            .observe(\.contentSize,
+//                     changeHandler: { [unowned self] (_, change) in
+//                        guard let newHeight = change.newValue?.height else { return }
+//                        self.termsHeightConstraint.constant = newHeight
+//            })
         termsHeightConstraint.constant = termConditionTextView.contentSize.height
         termConditionTextView.textContainerInset = .zero
         if #available(iOS 11.0, *) {
@@ -80,10 +82,10 @@ class SignupVC: UIViewController, UITextViewDelegate{
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         switch URL {
         case MyConstants.privacyAndPolicyURL:
-            CommonMethods.common.showLog(tag: TAG, message: "Privacy Policy")
+            CommonMethods.showLog(tag: TAG, message: "Privacy Policy")
             return false
         case MyConstants.termsAndConditionsURL:
-            CommonMethods.common.showLog(tag: TAG, message: "Terms & Conditions")
+            CommonMethods.showLog(tag: TAG, message: "Terms & Conditions")
             return false
         default:
             return true
@@ -107,11 +109,11 @@ class SignupVC: UIViewController, UITextViewDelegate{
         let name = nameTextField.text?.trimmingCharacters(in: .whitespaces) ?? ""
         let email = emailTextField.text?.trimmingCharacters(in: .whitespaces) ?? ""
         if name == ""{
-            MyNavigations.navigation.showCommonMessageDialog(message: "Enter name", buttonTitle: "OK")
+            MyNavigations.showCommonMessageDialog(message: "Enter name", buttonTitle: "OK")
         }else if email == ""{
-            MyNavigations.navigation.showCommonMessageDialog(message: "Enter email", buttonTitle: "OK")
+            MyNavigations.showCommonMessageDialog(message: "Enter email", buttonTitle: "OK")
         }else{
-            CommonWebServices.api.signup(navigationController: navigationController, phoneNumber: phoneNumber, name: name, email: email)
+            CommonWebServices.api.signup(navigationController: navigationController, callingCode: callingCode, phoneNumber: phoneNumber, name: name, email: email)
         }
     }
     

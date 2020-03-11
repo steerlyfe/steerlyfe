@@ -26,10 +26,10 @@ class NearbyStoresCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        CommonMethods.common.setRatingStarStyle(ratingView: ratingView)
+        CommonMethods.setRatingStarStyle(ratingView: ratingView)
         addressLabel.textColor = UIColor.myGreyColor
-        CommonMethods.common.roundCornerView(uiView: mainView, cornerRadius: 10.0)
-        CommonMethods.common.makeRoundImageView(imageView: profilePic, cornerRadius: 25.0)
+        CommonMethods.roundCornerView(uiView: mainView, cornerRadius: 10.0)
+        CommonMethods.makeRoundImageView(imageView: profilePic, cornerRadius: 25.0)
         moreDetailButton.buttonStrokeColorPrimaryDark()
     }
     
@@ -50,7 +50,7 @@ class NearbyStoresCVC: UICollectionViewCell {
     }
     
     @IBAction func moreDetailButtonPressed(_ sender: Any) {
-        CommonMethods.common.showLog(tag: TAG, message: "moreDetailButtonPressed")
+        CommonMethods.showLog(tag: TAG, message: "moreDetailButtonPressed")
         buttonDelegate?.onButtonPressed(type: "MoreDetail", position: position)
     }
     

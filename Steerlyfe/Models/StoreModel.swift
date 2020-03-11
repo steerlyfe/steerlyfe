@@ -60,6 +60,7 @@ class StoreDetail: Mappable {
     var ratingCount : Int?
     var userRated : Bool?
     var reviews : [ReviewDetail] = []
+    var postsList : [PostDetail] = []
     
     var selected : Bool = false
     
@@ -87,6 +88,7 @@ class StoreDetail: Mappable {
         ratingCount <- map["ratingCount"]
         userRated <- map["userRated"]
         reviews <- map["reviews"]
+        postsList <- map["postsList"]
     }
 }
 

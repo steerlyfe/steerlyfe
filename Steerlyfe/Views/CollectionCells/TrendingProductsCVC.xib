@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,9 +20,15 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFE-tr-ZAh">
                         <rect key="frame" x="10" y="10" width="191" height="219"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="GYq-kk-BG8">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="GYq-kk-BG8">
                                 <rect key="frame" x="0.0" y="0.0" width="191" height="149"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ns-ZV-6Cn">
+                                <rect key="frame" x="0.0" y="0.0" width="191" height="149"/>
+                                <connections>
+                                    <action selector="viewProductDetail:" destination="gTV-IL-0wX" eventType="touchUpInside" id="DHo-UJ-Rr5"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjg-MH-ffv" userLabel="Detail View">
                                 <rect key="frame" x="0.0" y="149" width="191" height="70"/>
                                 <subviews>
@@ -55,7 +59,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-or-i90" userLabel="Plus View">
                                 <rect key="frame" x="131" y="129" width="50" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus_colored_big" translatesAutoresizingMaskIntoConstraints="NO" id="tIN-Fj-FQI">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favourite_colored" translatesAutoresizingMaskIntoConstraints="NO" id="tIN-Fj-FQI">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYf-sX-fpq">
@@ -83,13 +87,17 @@
                         <constraints>
                             <constraint firstItem="sjg-MH-ffv" firstAttribute="leading" secondItem="bFE-tr-ZAh" secondAttribute="leading" id="00j-sI-Cj7"/>
                             <constraint firstItem="sjg-MH-ffv" firstAttribute="top" secondItem="GYq-kk-BG8" secondAttribute="bottom" id="0qe-3Z-d8V"/>
+                            <constraint firstItem="4Ns-ZV-6Cn" firstAttribute="leading" secondItem="bFE-tr-ZAh" secondAttribute="leading" id="4hh-24-SZL"/>
+                            <constraint firstItem="4Ns-ZV-6Cn" firstAttribute="top" secondItem="bFE-tr-ZAh" secondAttribute="top" id="CYI-nE-hLK"/>
                             <constraint firstAttribute="bottom" secondItem="sjg-MH-ffv" secondAttribute="bottom" id="LDU-Wk-krZ"/>
                             <constraint firstAttribute="bottom" secondItem="fxG-or-i90" secondAttribute="bottom" constant="40" id="LtH-HA-IIc"/>
                             <constraint firstItem="GYq-kk-BG8" firstAttribute="top" secondItem="bFE-tr-ZAh" secondAttribute="top" id="Sjs-Un-LKg"/>
+                            <constraint firstItem="sjg-MH-ffv" firstAttribute="top" secondItem="4Ns-ZV-6Cn" secondAttribute="bottom" id="YTo-u9-VnE"/>
                             <constraint firstAttribute="trailing" secondItem="sjg-MH-ffv" secondAttribute="trailing" id="bZE-4p-KkV"/>
                             <constraint firstItem="GYq-kk-BG8" firstAttribute="leading" secondItem="bFE-tr-ZAh" secondAttribute="leading" id="g0V-qt-S3p"/>
                             <constraint firstAttribute="trailing" secondItem="fxG-or-i90" secondAttribute="trailing" constant="10" id="mDF-di-bwX"/>
                             <constraint firstAttribute="trailing" secondItem="GYq-kk-BG8" secondAttribute="trailing" id="xBZ-BF-qMf"/>
+                            <constraint firstAttribute="trailing" secondItem="4Ns-ZV-6Cn" secondAttribute="trailing" id="zOK-gP-8Kq"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -103,6 +111,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="211" height="239"/>
             <connections>
+                <outlet property="favouriteIcon" destination="tIN-Fj-FQI" id="VT2-He-FNU"/>
                 <outlet property="mainView" destination="bFE-tr-ZAh" id="UqG-jA-wea"/>
                 <outlet property="productImage" destination="GYq-kk-BG8" id="C43-nI-LPD"/>
                 <outlet property="productName" destination="v10-yy-fjp" id="FgY-UV-Rov"/>
@@ -112,7 +121,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="favourite_colored" width="138" height="140"/>
         <image name="logo" width="200" height="200"/>
-        <image name="plus_colored_big" width="51" height="53.5"/>
     </resources>
 </document>

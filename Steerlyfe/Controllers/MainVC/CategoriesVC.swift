@@ -23,7 +23,7 @@ class CategoriesVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         data = databaseMethods.getAllCategories()
-        CommonMethods.common.showLog(tag: TAG, message: "Categories : \(data.count)")
+        CommonMethods.showLog(tag: TAG, message: "Categories : \(data.count)")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.setUI()
         }
@@ -59,10 +59,10 @@ class CategoriesVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     }
     
     func onButtonPressed(type: String, position: Int) {
-        CommonMethods.common.showLog(tag: TAG, message: "type : \(type) position : \(position)")
+        CommonMethods.showLog(tag: TAG, message: "type : \(type) position : \(position)")
         switch type {
         case "ViewDetail":
-            MyNavigations.navigation.goToProductList(navigationController: navigationController, type: .categoryProducts, pageTitle: "\(data[position].categoryName ?? "")'s Products", categoryId: data[position].categoryId ?? "", subStoreId: "", storeId: "")
+            MyNavigations.goToCategoryDetail(navigationController: navigationController, categoryDetail: data[position])
             break
         default:
             break

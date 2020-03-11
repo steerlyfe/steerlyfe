@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="AddressListTVC" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddressListTVC" rowHeight="125" id="KGk-i7-Jjw" customClass="AddressListTVC" customModule="Steerlyfe" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4NF-z4-Iik">
+                        <rect key="frame" x="10" y="10" width="300" height="105"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eKF-JY-ga7">
+                                <rect key="frame" x="10" y="10" width="280" height="85"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z79-xJ-6ha">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="tKd-WA-1gi">
+                                        <rect key="frame" x="0.0" y="26" width="280" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tum-tD-mFu">
+                                                <rect key="frame" x="0.0" y="0.0" width="83.5" height="30"/>
+                                                <state key="normal" title="Use Address">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="useAddressPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6Xf-Vt-d2m"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDo-dI-0Wu">
+                                                <rect key="frame" x="98.5" y="0.0" width="83" height="30"/>
+                                                <state key="normal" title="Delete">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteAddressPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WbM-gk-XL6"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcj-u1-kOs">
+                                                <rect key="frame" x="196.5" y="0.0" width="83.5" height="30"/>
+                                                <state key="normal" title="Make Default">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="makeDefaultPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="AuS-aJ-D03"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gX1-oK-5so">
+                                        <rect key="frame" x="0.0" y="66" width="280" height="19"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="eKF-JY-ga7" secondAttribute="bottom" constant="10" id="Ik0-hf-Izz"/>
+                            <constraint firstItem="eKF-JY-ga7" firstAttribute="top" secondItem="4NF-z4-Iik" secondAttribute="top" constant="10" id="Jei-Ra-MUx"/>
+                            <constraint firstItem="eKF-JY-ga7" firstAttribute="leading" secondItem="4NF-z4-Iik" secondAttribute="leading" constant="10" id="Wmt-72-Cdb"/>
+                            <constraint firstAttribute="trailing" secondItem="eKF-JY-ga7" secondAttribute="trailing" constant="10" id="uf9-jP-6yH"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="4NF-z4-Iik" secondAttribute="bottom" constant="10" id="J2Y-9o-gvl"/>
+                    <constraint firstAttribute="trailing" secondItem="4NF-z4-Iik" secondAttribute="trailing" constant="10" id="Q9S-Ni-hrw"/>
+                    <constraint firstItem="4NF-z4-Iik" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ooa-oa-dQ4"/>
+                    <constraint firstItem="4NF-z4-Iik" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="tY8-4K-9aF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addressLabel" destination="z79-xJ-6ha" id="HJR-1D-hHS"/>
+                <outlet property="deleteAddessButton" destination="LDo-dI-0Wu" id="9jr-G3-6T2"/>
+                <outlet property="mainView" destination="4NF-z4-Iik" id="eo6-QG-soa"/>
+                <outlet property="makeDefaultButton" destination="mcj-u1-kOs" id="b5I-f6-bef"/>
+                <outlet property="useAddressButton" destination="tum-tD-mFu" id="3PW-U3-cRU"/>
+            </connections>
+            <point key="canvasLocation" x="-57.971014492753625" y="68.638392857142847"/>
+        </tableViewCell>
+    </objects>
+</document>

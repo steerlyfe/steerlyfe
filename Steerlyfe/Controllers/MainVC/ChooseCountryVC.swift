@@ -41,7 +41,7 @@ class ChooseCountryVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        CommonMethods.common.setNavigationBar(navigationController: navigationController, navigationItem: navigationItem, title: pageTitle)
+        CommonMethods.setNavigationBar(navigationController: navigationController, navigationItem: navigationItem, title: pageTitle)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,24 +58,24 @@ class ChooseCountryVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        CommonMethods.common.showLog(tag: TAG, message: "searchBarSearchButtonClicked")
+        CommonMethods.showLog(tag: TAG, message: "searchBarSearchButtonClicked")
 //        if let text = searchBar.text{
 //            refresh = true
 //            currentPage = 1
 //            KVNProgress.show()
 //            getData(text: text)
 //        }else{
-//            MyNavigations.navigation.showCommonMessageDialog(message: "Enter meal name", buttonTitle: "OK")
+//            MyNavigations.showCommonMessageDialog(message: "Enter meal name", buttonTitle: "OK")
 //        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        CommonMethods.common.showLog(tag: TAG, message: "searchBarCancelButtonClicked")
+        CommonMethods.showLog(tag: TAG, message: "searchBarCancelButtonClicked")
         closeViewController()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        CommonMethods.common.showLog(tag: TAG, message: "searchText : \(searchText)")
+        CommonMethods.showLog(tag: TAG, message: "searchText : \(searchText)")
         searchedList = []
         countryList.forEach { (countryDetail) in
             if let name = countryDetail.countryName?.lowercased(){

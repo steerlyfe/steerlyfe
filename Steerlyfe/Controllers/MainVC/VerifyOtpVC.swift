@@ -10,11 +10,12 @@ import UIKit
 import Firebase
 
 class VerifyOtpVC: UIViewController, UITextFieldDelegate, OtpSendDelegate {
-    
+   
     let TAG = "VerifyOtpVC"
     
     var phoneNumber : String = ""
     var verificationID : String = ""
+    var callingCode : String = ""
     
     @IBOutlet weak var resendButton: UIButton!
     @IBOutlet weak var verifyButton: UIButton!
@@ -33,21 +34,21 @@ class VerifyOtpVC: UIViewController, UITextFieldDelegate, OtpSendDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CommonMethods.common.showLog(tag: TAG, message: "phoneNumber : \(phoneNumber)")
+        CommonMethods.showLog(tag: TAG, message: "phoneNumber : \(phoneNumber)")
         setUI()
         if MyConstants.FILL_STATIC_FORM{
-            firstTextField.text = "5"
-            secondTextField.text = "3"
-            thirdTextField.text = "1"
-            fourthTextField.text = "2"
-            fifthTextField.text = "4"
+            firstTextField.text = "1"
+            secondTextField.text = "2"
+            thirdTextField.text = "3"
+            fourthTextField.text = "4"
+            fifthTextField.text = "5"
             sixthTextField.text = "6"
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        CommonMethods.common.setNavigationBar(navigationController: navigationController, navigationItem: navigationItem, title: "Verify OTP")
+        CommonMethods.setNavigationBar(navigationController: navigationController, navigationItem: navigationItem, title: "Verify OTP")
     }
     
     func setUI() {
@@ -55,13 +56,13 @@ class VerifyOtpVC: UIViewController, UITextFieldDelegate, OtpSendDelegate {
         let borderColor = UIColor.colorPrimaryDark
         verifyButton.setTitleColor(UIColor.white, for: .normal)
         resendButton.setTitleColor(UIColor.colorPrimaryDark, for: .normal)
-        CommonMethods.common.addRoundCornerStroke(uiview: firstView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
-        CommonMethods.common.addRoundCornerStroke(uiview: secondView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
-        CommonMethods.common.addRoundCornerStroke(uiview: thirdView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
-        CommonMethods.common.addRoundCornerStroke(uiview: fourthView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
-        CommonMethods.common.addRoundCornerStroke(uiview: fifthView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
-        CommonMethods.common.addRoundCornerStroke(uiview: sixthView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
-        CommonMethods.common.addRoundCornerFilled(uiview: verifyButton, borderWidth: 1.0, borderColor: UIColor.colorPrimaryDark, backgroundColor: UIColor.colorPrimaryDark, cornerRadius: 20.0)
+        CommonMethods.addRoundCornerStroke(uiview: firstView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
+        CommonMethods.addRoundCornerStroke(uiview: secondView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
+        CommonMethods.addRoundCornerStroke(uiview: thirdView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
+        CommonMethods.addRoundCornerStroke(uiview: fourthView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
+        CommonMethods.addRoundCornerStroke(uiview: fifthView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
+        CommonMethods.addRoundCornerStroke(uiview: sixthView, borderWidth: borderWidth, borderColor: borderColor, cornerRadius: 5.0)
+        CommonMethods.addRoundCornerFilled(uiview: verifyButton, borderWidth: 1.0, borderColor: UIColor.colorPrimaryDark, backgroundColor: UIColor.colorPrimaryDark, cornerRadius: 20.0)
         firstTextField.delegate = self
         secondTextField.delegate = self
         thirdTextField.delegate = self
@@ -81,7 +82,7 @@ class VerifyOtpVC: UIViewController, UITextFieldDelegate, OtpSendDelegate {
     }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
-        CommonMethods.common.showLog(tag: TAG, message: "textFieldDidChange : \(textField.text ?? "")")
+        CommonMethods.showLog(tag: TAG, message: "textFieldDidChange : \(textField.text ?? "")")
         switch textField {
         case firstTextField:
             changeTextFieldFocus(previousTextField: firstTextField, currentTextField: firstTextField, nextTextField: secondTextField)
@@ -125,7 +126,7 @@ class VerifyOtpVC: UIViewController, UITextFieldDelegate, OtpSendDelegate {
         }else{
             previousTextField.becomeFirstResponder()
         }
-        CommonMethods.common.showLog(tag: TAG, message: "OTP : \(prepareOtpValue())")
+        CommonMethods.showLog(tag: TAG, message: "OTP : \(prepareOtpValue())")
     }
     
     func prepareOtpValue() -> String {
@@ -133,21 +134,21 @@ class VerifyOtpVC: UIViewController, UITextFieldDelegate, OtpSendDelegate {
     }
     
     @IBAction func resendCode(_ sender: Any) {
-        CommonPhoneVerification.common.phoneVerification(phoneNumber: phoneNumber, delegate: self)
+        CommonPhoneVerification.common.phoneVerification(callingCode: callingCode, phoneNumber: phoneNumber, delegate: self)
     }
     
     @IBAction func verifyButtonPressed(_ sender: Any) {
         let optValue = prepareOtpValue()
         if optValue.count < 6{
-            MyNavigations.navigation.showCommonMessageDialog(message: "Enter otp", buttonTitle: "Ok")
+            MyNavigations.showCommonMessageDialog(message: "Enter otp", buttonTitle: "Ok")
         }else{
-            CommonPhoneVerification.common.verifyOTP(navigationController: navigationController, phoneNumber: phoneNumber, otpValue: optValue, verificationID: verificationID)
+            CommonPhoneVerification.common.verifyOTP(navigationController: navigationController, callingCode: callingCode, phoneNumber: phoneNumber, otpValue: optValue, verificationID: verificationID)
         }
     }
     
-    func onOtpSend(phoneNumber: String, verificationID: String) {
+    func onOtpSend(callingCode: String, phoneNumber: String, verificationID: String) {
         self.verificationID = verificationID
-        MyNavigations.navigation.showCommonMessageDialog(message: "Verification code has been send to \(phoneNumber)", buttonTitle: "OK")
+        MyNavigations.showCommonMessageDialog(message: "Verification code has been send to (+\(callingCode)) \(phoneNumber)", buttonTitle: "OK")
     }
     
 }

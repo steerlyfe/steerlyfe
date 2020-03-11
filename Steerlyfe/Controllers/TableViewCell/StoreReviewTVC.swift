@@ -17,7 +17,6 @@ class StoreReviewTVC: UITableViewCell {
     var data : ReviewDetail?
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var nameLabeImage: UIImageView!
     @IBOutlet weak var nameLabelView: UIView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var infoLabel: UILabel!
@@ -26,10 +25,10 @@ class StoreReviewTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        CommonMethods.common.setRatingStarStyle(ratingView: ratingView)
+        CommonMethods.setRatingStarStyle(ratingView: ratingView)
         nameLabel.textColor = UIColor.white
-        CommonMethods.common.makeRoundImageView(imageView: nameLabeImage, cornerRadius: 30.0)
-        CommonMethods.common.makeRoundImageView(imageView: profilePic, cornerRadius: 30.0)
+        CommonMethods.makeRoundImageView(imageView: profilePic, cornerRadius: profilePic.frame.height / 2.0)
+        CommonMethods.roundCornerFilledGradient(uiView: nameLabelView, cornerRadius: nameLabelView.frame.width / 2.0)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -39,7 +38,7 @@ class StoreReviewTVC: UITableViewCell {
     func setDetail(data : ReviewDetail?)  {
         self.data = data
         ratingView.rating = data?.rating ?? 0.0
-        infoLabel.text = "By \(data?.full_name ?? "") on \(CommonMethods.common.getOnlyDate(timeStamp: data?.rating_time ?? NSDate().timeIntervalSince1970))"
+        infoLabel.text = "By \(data?.full_name ?? "") on \(CommonMethods.getOnlyDate(timeStamp: data?.rating_time ?? NSDate().timeIntervalSince1970))"
         reviewDesc.text = data?.description
         if let imageUrl = data?.image_url{
             if imageUrl == ""{
@@ -48,7 +47,7 @@ class StoreReviewTVC: UITableViewCell {
                 nameLabelView.isHidden = true
                 profilePic.isHidden = false
                 profilePic.sd_setImage(with: URL(string: data?.image_url ?? "" )) { (image, error, cacheType, url) in
-                    CommonMethods.common.showLog(tag: self.TAG, message: "error : \(error)")
+                    CommonMethods.showLog(tag: self.TAG, message: "error : \(error)")
                 }
             }
         }else{

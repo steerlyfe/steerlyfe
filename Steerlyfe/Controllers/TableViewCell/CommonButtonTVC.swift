@@ -17,7 +17,7 @@ class CommonButtonTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        CommonMethods.addRoundCornerFilled(uiview: buttonView, borderWidth: 0.0, borderColor: UIColor.black, backgroundColor: UIColor.black, cornerRadius: buttonView.frame.height / 2.0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

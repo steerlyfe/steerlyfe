@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ProductsListDelegate, ButtonPressedAtPositionDelegate, UISearchBarDelegate{
+class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ProductsListDelegate, ButtonPressedAtPositionDelegate, UISearchBarDelegate, RefreshProductsListDelegate{
     
     let TAG = "ProductListVC"
     let refreshControl = UIRefreshControl()
@@ -37,7 +37,7 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func setUI(){
-        CommonMethods.common.setTableViewSeperatorColor(tableView: tableView)
+        CommonMethods.setTableViewSeperatorColor(tableView: tableView)
         noDataMessage.isHidden = true
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
@@ -67,7 +67,7 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        CommonMethods.common.setNavigationBar(navigationController: navigationController, navigationItem: navigationItem, title: pageTitle)
+        CommonMethods.setNavigationBar(navigationController: navigationController, navigationItem: navigationItem, title: pageTitle)
     }
     
     @IBAction func onBackButtonPressed(_ sender: UIButton) {
@@ -93,11 +93,11 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             paginationCount = listData.count
         }
         isLoading = true
-        CommonMethods.common.showLog(tag: TAG, message: "paginationCount : \(paginationCount)")
-        CommonMethods.common.showLog(tag: TAG, message: "refresh : \(refresh)")
+        CommonMethods.showLog(tag: TAG, message: "paginationCount : \(paginationCount)")
+        CommonMethods.showLog(tag: TAG, message: "refresh : \(refresh)")
         switch type {
         case .categoryProducts:
-            CommonWebServices.api.getCategoryProducts(navigationController: navigationController, categoryId: categoryId, count: paginationCount, delegate: self)
+            CommonWebServices.api.getCategoryProducts(navigationController: navigationController, categoryId: categoryId, count: paginationCount, sortingType: CommonMethods.getSortingOptionValue(sortingType: .topRated)?.apiType ?? "", delegate: self)
             break
         case .searchProducts:
             if let text = searchBar.text{
@@ -126,7 +126,7 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 self.listData = []
             }
             data?.productList.forEach({(productDetail : ProductDetail)in
-                let quantity = databaseMethods.getProductQuantity(productId: productDetail.product_id ?? "")
+                let quantity = databaseMethods.getCartProductQuantity(productId: productDetail.product_id ?? "")
                 productDetail.quantity = quantity ?? 0
                 self.listData.append(productDetail)
             })
@@ -145,7 +145,7 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
             break
         default:
-            MyNavigations.navigation.showCommonMessageDialog(message: message, buttonTitle: "OK")
+            MyNavigations.showCommonMessageDialog(message: message, buttonTitle: "OK")
             break
         }
     }
@@ -172,7 +172,7 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 return cell
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListTVC", for: indexPath) as! ProductListTVC
-                cell.setDetail(data: listData[indexPath.row], delegate: self, position: indexPath.row, databaseMethods: databaseMethods)
+                cell.setDetail(data: listData[indexPath.row], delegate: self, position: indexPath.row, databaseMethods: databaseMethods, calledFrom: MyConstants.CART_LIST)
                 cell.selectionStyle = UITableViewCell.SelectionStyle.none
                 return cell
             }
@@ -189,22 +189,42 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func onButtonPressed(type: String, position: Int) {
-        
+        CommonMethods.showLog(tag: TAG, message: "type : \(type) position : \(position)")
+        switch type {
+        case MyConstants.ADD_TO_CART:
+            MyNavigations.goToProductDetail(navigationController: navigationController, productId: listData[position].product_id, refreshProductsListDelegate: self)
+            break
+        case MyConstants.REMOVE_ITEM:
+            tableView.reloadData()
+            break
+        case MyConstants.REFRESH_DATA:
+            tableView.reloadData()
+            break
+        default:
+            break
+        }
     }
+    
+    func onProductRefreshCalled() {
+        CommonMethods.showLog(tag: TAG, message: "onProductRefreshCalled")
+        tableView.reloadData()
+    }
+    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        CommonMethods.common.showLog(tag: TAG, message: "searchBarSearchButtonClicked")
+        CommonMethods.showLog(tag: TAG, message: "searchBarSearchButtonClicked")
         if let text = searchBar.text{
             if text.count > 1{
                 refresh = true
                 refreshControl.beginRefreshing()
                 getAllData()
             }else{
-                MyNavigations.navigation.showCommonMessageDialog(message: "Enter at least 2 characters", buttonTitle: "OK")
+                MyNavigations.showCommonMessageDialog(message: "Enter at least 2 characters", buttonTitle: "OK")
             }
         }else{
-            MyNavigations.navigation.showCommonMessageDialog(message: "Enter product name", buttonTitle: "OK")
+            MyNavigations.showCommonMessageDialog(message: "Enter product name", buttonTitle: "OK")
         }
     }
+    
 }

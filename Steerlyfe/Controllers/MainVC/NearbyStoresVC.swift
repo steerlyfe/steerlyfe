@@ -34,6 +34,7 @@ class NearbyStoresVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        mapView.isMyLocationEnabled = true
         collectionView.register(UINib(nibName: "NearbyStoresCVC", bundle: nil), forCellWithReuseIdentifier: "NearbyStoresCVC")
         collectionView.backgroundColor = UIColor(white: 1, alpha: 0.0)
         collectionView.delegate = self
@@ -56,13 +57,13 @@ class NearbyStoresVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         let categoryCollectionWidth = self.collectionView.frame.width
         collectionCellWidth = ( categoryCollectionWidth * 3 ) / 4
         collectionCellHeight = self.collectionView.frame.height
-        CommonMethods.common.showLog(tag: TAG, message: "collectionCellWidth : \(collectionCellWidth)")
-        CommonMethods.common.showLog(tag: TAG, message: "collectionCellHeight : \(collectionCellHeight)")
+        CommonMethods.showLog(tag: TAG, message: "collectionCellWidth : \(collectionCellWidth)")
+        CommonMethods.showLog(tag: TAG, message: "collectionCellHeight : \(collectionCellHeight)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        CommonMethods.common.setNavigationBar(navigationController: navigationController, navigationItem: navigationItem, title: "Nearby Stores")
+        CommonMethods.setNavigationBar(navigationController: navigationController, navigationItem: navigationItem, title: "Nearby Stores")
     }
     
     func onNearbyStoresListReceived(status: String, message: String, data: NearbyStoresResponse?) {
@@ -76,13 +77,13 @@ class NearbyStoresVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
             collectionView.reloadData()
             break
         default:
-            MyNavigations.navigation.showCommonMessageDialog(message: message, buttonTitle: "OK")
+            MyNavigations.showCommonMessageDialog(message: message, buttonTitle: "OK")
             break
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        CommonMethods.common.showLog(tag: TAG, message: "locationManager didChangeAuthorization \(status.rawValue)")
+        CommonMethods.showLog(tag: TAG, message: "locationManager didChangeAuthorization \(status.rawValue)")
         guard status == .authorizedWhenInUse else {
             return
         }
@@ -90,7 +91,7 @@ class NearbyStoresVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
-        CommonMethods.common.showLog(tag: TAG, message: "locationManager didUpdateLocations \(locations)")
+        CommonMethods.showLog(tag: TAG, message: "locationManager didUpdateLocations \(locations)")
         location = locations[locations.count - 1]
         if location.horizontalAccuracy>1{
             if !locationUpdatedCalled{
@@ -103,14 +104,14 @@ class NearbyStoresVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
                 refreshAllMarkers()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     self.locationUpdatedCalled = false
-                    CommonMethods.common.showLog(tag: self.TAG, message: "locationUpdatedCalled : \(self.locationUpdatedCalled)")
+                    CommonMethods.showLog(tag: self.TAG, message: "locationUpdatedCalled : \(self.locationUpdatedCalled)")
                 }
             }
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        CommonMethods.common.showLog(tag: TAG, message: "LOCATION ERROR\(error)")
+        CommonMethods.showLog(tag: TAG, message: "LOCATION ERROR\(error)")
         myLocationAvailable = false
         getData()
     }
@@ -145,7 +146,7 @@ class NearbyStoresVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        CommonMethods.common.showLog(tag: TAG, message: marker)
+        CommonMethods.showLog(tag: TAG, message: marker)
         switch marker.accessibilityLabel {
         case "other":
             let position : Int = Int( marker.accessibilityHint ?? "0" ) ?? 0
@@ -169,16 +170,16 @@ class NearbyStoresVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     
     func refreshAllMarkers() {
         mapView.clear()
-        if myLocationAvailable{
-            showMarker(position: CLLocationCoordinate2D(latitude: currentLat, longitude: currentLng), markerImage: myLocationMarkerImage, selected: false, markerTag: "myMarker", markerPosition: "0")
-        }
+//        if myLocationAvailable{
+//            showMarker(position: CLLocationCoordinate2D(latitude: currentLat, longitude: currentLng), markerImage: myLocationMarkerImage, selected: false, markerTag: "myMarker", markerPosition: "0")
+//        }
         var count = 0
         storesList.forEach({ (innerData) in
             let lat : Double = Double( innerData.lat ?? currentLat )
             let lng : Double = Double( innerData.lng ?? currentLng )
-            CommonMethods.common.showLog(tag: TAG, message: "refreshAllMarkers")
-            CommonMethods.common.showLog(tag: TAG, message: "lat : \(lat)")
-            CommonMethods.common.showLog(tag: TAG, message: "lng : \(lng)")
+            CommonMethods.showLog(tag: TAG, message: "refreshAllMarkers")
+            CommonMethods.showLog(tag: TAG, message: "lat : \(lat)")
+            CommonMethods.showLog(tag: TAG, message: "lng : \(lng)")
             if innerData.selected{
                 let camera = GMSCameraPosition.camera(withLatitude: lat, longitude: lng, zoom: zoomValue)
                 mapView.camera = camera
@@ -223,7 +224,7 @@ class NearbyStoresVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     func onButtonPressed(type: String, position: Int) {
         switch type {
         case "MoreDetail":
-            MyNavigations.navigation.goToStoreDetail(navigationController: navigationController, subStoreId: storesList[position].subStoreId ?? "")
+            MyNavigations.goToStoreDetail(navigationController: navigationController, subStoreId: storesList[position].subStoreId ?? "")
             break
         default:
             break

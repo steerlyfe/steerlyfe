@@ -13,6 +13,7 @@ class GetStaticDataResponse: Mappable {
     var message : String = ""
     var countriesList : [CountryDetail] = []
     var categoriesList : [CategoryDetail] = []
+    var quizQuestions : [QuizQuestionDetail] = []
     
     required init?(map: Map){
         
@@ -23,5 +24,6 @@ class GetStaticDataResponse: Mappable {
         message <- map["message"]
         countriesList <- map["countriesList"]
         categoriesList <- map["categoriesList"]
+        quizQuestions <- map["quizQuestions"]
     }
 }

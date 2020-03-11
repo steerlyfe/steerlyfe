@@ -43,13 +43,13 @@ class DiscoverTVC: UITableViewCell {
 //        data?.categoryName = "Hii helloi Kiddaaaaa"
         labelViewWidth.constant = 125.0
         if let value = data?.categoryName{
-            CommonMethods.common.showLog(tag: TAG, message: "value : \(value)")
-            CommonMethods.common.showLog(tag: TAG, message: "BEFORE : \(labelViewWidth.constant) : position : \(position)")
+            CommonMethods.showLog(tag: TAG, message: "value : \(value)")
+            CommonMethods.showLog(tag: TAG, message: "BEFORE : \(labelViewWidth.constant) : position : \(position)")
             let width = value.width(withConstrainedHeight: labelViewHeight.constant, font: UIFont.boldSystemFont(ofSize: 13.0))
             if width + 40.0 > labelViewWidth.constant{
                 labelViewWidth.constant = width + 40.0
             }
-            CommonMethods.common.showLog(tag: TAG, message: "AFTER : \(labelViewWidth.constant)")
+            CommonMethods.showLog(tag: TAG, message: "AFTER : \(labelViewWidth.constant)")
             categoryName.text = value
         }else{
             categoryName.text = ""

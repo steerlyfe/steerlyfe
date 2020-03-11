@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,20 +20,17 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xjw-Rs-U6g">
                         <rect key="frame" x="10" y="10" width="280" height="230"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_small" translatesAutoresizingMaskIntoConstraints="NO" id="lfQ-Mr-k0D">
-                                <rect key="frame" x="0.0" y="0.0" width="280" height="230"/>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pG7-ab-ESg">
-                                <rect key="frame" x="1" y="1" width="278" height="228"/>
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="229"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EPG-s9-QAY">
-                                        <rect key="frame" x="0.0" y="0.0" width="278" height="178"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EPG-s9-QAY">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="179"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7h-Df-kcj">
-                                        <rect key="frame" x="0.0" y="178" width="278" height="50"/>
+                                        <rect key="frame" x="0.0" y="179" width="280" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13E-8F-TcP">
-                                                <rect key="frame" x="10" y="16.5" width="258" height="17"/>
+                                                <rect key="frame" x="10" y="16.5" width="260" height="17"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -61,16 +56,12 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="eVc-bP-De2" secondAttribute="bottom" id="1mQ-6n-vnC"/>
                             <constraint firstItem="eVc-bP-De2" firstAttribute="leading" secondItem="Xjw-Rs-U6g" secondAttribute="leading" id="4kn-9u-Xss"/>
-                            <constraint firstItem="lfQ-Mr-k0D" firstAttribute="top" secondItem="Xjw-Rs-U6g" secondAttribute="top" id="Esh-aX-uHL"/>
-                            <constraint firstAttribute="trailing" secondItem="lfQ-Mr-k0D" secondAttribute="trailing" id="Gna-vS-RLs"/>
-                            <constraint firstItem="pG7-ab-ESg" firstAttribute="leading" secondItem="Xjw-Rs-U6g" secondAttribute="leading" constant="1" id="Q8f-jb-hTh"/>
-                            <constraint firstItem="lfQ-Mr-k0D" firstAttribute="leading" secondItem="Xjw-Rs-U6g" secondAttribute="leading" id="XIl-Qa-8ki"/>
-                            <constraint firstAttribute="trailing" secondItem="pG7-ab-ESg" secondAttribute="trailing" constant="1" id="bqu-PK-cvq"/>
+                            <constraint firstItem="pG7-ab-ESg" firstAttribute="leading" secondItem="Xjw-Rs-U6g" secondAttribute="leading" id="Q8f-jb-hTh"/>
+                            <constraint firstAttribute="trailing" secondItem="pG7-ab-ESg" secondAttribute="trailing" id="bqu-PK-cvq"/>
                             <constraint firstAttribute="bottom" secondItem="pG7-ab-ESg" secondAttribute="bottom" constant="1" id="dno-vz-vdo"/>
                             <constraint firstItem="eVc-bP-De2" firstAttribute="top" secondItem="Xjw-Rs-U6g" secondAttribute="top" id="eW6-SJ-b7T"/>
-                            <constraint firstAttribute="bottom" secondItem="lfQ-Mr-k0D" secondAttribute="bottom" id="i6f-MG-qmT"/>
                             <constraint firstAttribute="trailing" secondItem="eVc-bP-De2" secondAttribute="trailing" id="lLm-I4-NwJ"/>
-                            <constraint firstItem="pG7-ab-ESg" firstAttribute="top" secondItem="Xjw-Rs-U6g" secondAttribute="top" constant="1" id="qUH-gP-afS"/>
+                            <constraint firstItem="pG7-ab-ESg" firstAttribute="top" secondItem="Xjw-Rs-U6g" secondAttribute="top" id="qUH-gP-afS"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -91,7 +82,4 @@
             <point key="canvasLocation" x="59" y="44"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="background_small" width="200" height="356"/>
-    </resources>
 </document>

@@ -22,7 +22,7 @@ class DiscoverVC: UIViewController, UITableViewDelegate, UITableViewDataSource ,
     override func viewDidLoad() {
         super.viewDidLoad()
         data = databaseMethods.getAllCategories()
-        CommonMethods.common.showLog(tag: TAG, message: "COUNT : \(data.count)")
+        CommonMethods.showLog(tag: TAG, message: "COUNT : \(data.count)")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.setUI()
         }
@@ -34,7 +34,7 @@ class DiscoverVC: UIViewController, UITableViewDelegate, UITableViewDataSource ,
         tableView.register(UINib(nibName: "DiscoverTVC", bundle: nil), forCellReuseIdentifier: "DiscoverTVC")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
-        CommonMethods.common.setTableViewSeperatorColor(tableView: tableView)
+        CommonMethods.setTableViewSeperatorColor(tableView: tableView)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor(white: 1, alpha: 0.1)
@@ -63,7 +63,7 @@ class DiscoverVC: UIViewController, UITableViewDelegate, UITableViewDataSource ,
     }
     
     func onButtonPressed(type: String, position: Int) {
-        CommonMethods.common.showLog(tag: TAG, message: "type : \(type) position : \(position)")
+        CommonMethods.showLog(tag: TAG, message: "type : \(type) position : \(position)")
         switch type {
         case "ViewDetail":
             break

@@ -11,3 +11,12 @@ enum ProductListType {
     case searchProducts
     case storeProducts
 }
+
+enum SortingType {
+    case topRated
+    case priceLowToHigh
+    case priceHighToLow
+    case mostPopular
+    case newestArrivals
+    case featured
+}

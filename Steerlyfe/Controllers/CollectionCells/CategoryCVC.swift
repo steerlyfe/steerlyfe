@@ -22,9 +22,9 @@ class CategoryCVC: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor(white: 1.0, alpha: 0.0)
-        categoryName.textColor = UIColor.white
-        CommonMethods.common.makeRoundImageView(imageView: categoryImage, cornerRadius: 10.0)
-        CommonMethods.common.addCardViewStyle(uiView: mainView, cornerRadius: 10.0, shadowRadius: 0.0)
+//        categoryName.textColor = UIColor.white
+        CommonMethods.makeRoundImageView(imageView: categoryImage, cornerRadius: 10.0)
+        CommonMethods.addCardViewStyle(uiView: mainView, cornerRadius: 10.0, shadowRadius: 0.0)
     }
 
     func setDetail(data : CategoryDetail?, delegate : ButtonPressedAtPositionDelegate, position : Int) {

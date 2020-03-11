@@ -14,7 +14,7 @@ target 'Steerlyfe' do
     pod 'SwiftyJSON','4.2.0'
     pod 'KVNProgress'
     pod 'Alamofire'
-    pod 'RealmSwift'
+#    pod 'RealmSwift'
     pod 'AlamofireObjectMapper', '~> 5.0'
     pod 'DropDown', '2.3.4'
     pod 'SDWebImage', '~> 4.0'
@@ -25,4 +25,6 @@ target 'Steerlyfe' do
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'Firebase/Auth'
+    pod 'Fabric', '~> 1.10.2'
+    pod 'Crashlytics', '~> 3.14.0'
 end

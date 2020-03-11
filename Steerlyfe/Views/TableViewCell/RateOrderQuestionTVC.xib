@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="RateOrderQuestionTVC" selectionStyle="default" indentationWidth="10" reuseIdentifier="RateOrderQuestionTVC" rowHeight="129" id="KGk-i7-Jjw" customClass="RateOrderQuestionTVC" customModule="Steerlyfe" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKc-AV-av7">
+                        <rect key="frame" x="10" y="10" width="300" height="109"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mP0-Us-lVC">
+                                <rect key="frame" x="10" y="10" width="280" height="89"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2V-e4-LsJ">
+                                        <rect key="frame" x="122.5" y="0.0" width="35.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOB-dS-dg5" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="67.5" y="26" width="145" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="5ay-uc-HLC"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVX-vw-Jx5">
+                                        <rect key="frame" x="0.0" y="76" width="280" height="13"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mP0-Us-lVC" secondAttribute="trailing" constant="10" id="hXe-Va-1jq"/>
+                            <constraint firstItem="mP0-Us-lVC" firstAttribute="top" secondItem="LKc-AV-av7" secondAttribute="top" constant="10" id="pQ3-uH-Iz2"/>
+                            <constraint firstAttribute="bottom" secondItem="mP0-Us-lVC" secondAttribute="bottom" constant="10" id="rdK-wD-EVZ"/>
+                            <constraint firstItem="mP0-Us-lVC" firstAttribute="leading" secondItem="LKc-AV-av7" secondAttribute="leading" constant="10" id="vgk-FM-tBn"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="LKc-AV-av7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="BeW-IY-2g9"/>
+                    <constraint firstAttribute="bottom" secondItem="LKc-AV-av7" secondAttribute="bottom" constant="10" id="YZy-Go-970"/>
+                    <constraint firstItem="LKc-AV-av7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="gWf-ff-K74"/>
+                    <constraint firstAttribute="trailing" secondItem="LKc-AV-av7" secondAttribute="trailing" constant="10" id="mas-Xt-zT2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="mainView" destination="LKc-AV-av7" id="VPv-Ac-XuK"/>
+                <outlet property="questionLabel" destination="e2V-e4-LsJ" id="UTC-hG-RUt"/>
+                <outlet property="ratingView" destination="jOB-dS-dg5" id="53W-qM-L0B"/>
+            </connections>
+            <point key="canvasLocation" x="211.59420289855075" y="49.888392857142854"/>
+        </tableViewCell>
+    </objects>
+</document>

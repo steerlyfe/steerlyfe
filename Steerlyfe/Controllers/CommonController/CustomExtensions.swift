@@ -177,6 +177,10 @@ extension UIColor {
         return UIColor(red: 0/255, green: 127/255, blue: 214/255, alpha: 0.1)
     }
     
+    static var colorPrimaryDarkTransLight: UIColor {
+        return UIColor(red: 0/255, green: 127/255, blue: 214/255, alpha: 0.01)
+    }
+    
     static var colorSecondary: UIColor {
         return UIColor(red: 4/255, green: 188/255, blue: 177/255, alpha: 1.0)
     }
@@ -189,12 +193,32 @@ extension UIColor {
         return UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1.0)
     }
     
+    static var myLineLightColor: UIColor {
+        return UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 0.5)
+    }
+    
     static var myGreyColor: UIColor {
         return UIColor(red: 128/255, green: 128/255, blue: 128/255, alpha: 1.0)
     }
     
     static var myStarColor: UIColor {
         return UIColor(red: 255/255, green: 199/255, blue: 0/255, alpha: 1.0)
+    }
+    
+    static var myOffWhiteColor: UIColor {
+        return UIColor(red: 245/255, green: 242/255, blue: 208/255, alpha: 1.0)
+    }
+    
+    static var statusIndicatorDark: UIColor {
+        return UIColor(red: 4/255, green: 188/255, blue: 177/255, alpha: 1.0)
+    }
+    
+    static var statusIndicatorLight: UIColor {
+        return UIColor(red: 4/255, green: 188/255, blue: 177/255, alpha: 0.2)
+    }
+    
+    static var statusIndicatorUnchecked: UIColor {
+        return UIColor(red: 169/255, green: 169/255, blue: 169/255, alpha: 1.0)
     }
 }
 
@@ -262,5 +286,31 @@ extension NSAttributedString {
         let boundingBox = boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, context: nil)
         
         return ceil(boundingBox.width)
+    }
+}
+
+@IBDesignable class PaddingLabel: UILabel {
+    
+    @IBInspectable var topInset: CGFloat = 5.0
+    @IBInspectable var bottomInset: CGFloat = 5.0
+    @IBInspectable var leftInset: CGFloat = 16.0
+    @IBInspectable var rightInset: CGFloat = 16.0
+    
+    override func drawText(in rect: CGRect) {
+        let insets = UIEdgeInsets.init(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
+        super.drawText(in: rect.inset(by: insets))
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize(width: size.width + leftInset + rightInset,
+                      height: size.height + topInset + bottomInset)
+    }
+    
+    func updatePadding(topInset: CGFloat, bottomInset: CGFloat, leftInset: CGFloat, rightInset: CGFloat) {
+        self.topInset = topInset
+        self.bottomInset = bottomInset
+        self.leftInset = leftInset
+        self.rightInset = rightInset
     }
 }

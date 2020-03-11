@@ -47,5 +47,49 @@ protocol StoreDetailDelegate {
 }
 
 protocol OtpSendDelegate {
-    func onOtpSend(phoneNumber : String, verificationID : String)
+    func onOtpSend(callingCode : String, phoneNumber : String, verificationID : String)
+}
+
+protocol SortingOptionDelegate {
+    func onSortingChanged(sortingType : SortingType?)
+}
+
+protocol ProductDetailDelegate {
+    func onProductDetailReceived(status : String, message : String, data : ProductDetailResponse?)
+}
+
+protocol AddNewAddressDelegate {
+    func onAddressAdded(status : String, message : String, addressId : String?)
+}
+
+protocol AddressListDelegate {
+    func onAddressListReceived(status : String, message : String, data : AddressListResponse?)
+}
+
+protocol RefreshProductsListDelegate {
+    func onProductRefreshCalled()
+}
+
+protocol ChooseAddressDelegate {
+    func onAddressChoosed(type : String, addressDetail : AddressDetail?)
+}
+
+protocol OrderHistoryResponseDelegate {
+    func onOrderHistoryReceived(status : String, message : String, data : OrderHistoryResponse?)
+}
+
+protocol OrderFeedbackQuestionsDelegate {
+    func onOrderFeedbackQuestionReceived(status : String, message : String, data : OrderFeedbackQuestionsResponse?)
+}
+
+protocol RatingChangeDelegate {
+    func onRatingChanged(position : Int, rating : Double?)
+}
+
+protocol AllPostsDelegate {
+    func onPostDataReceived(status : String, message : String, data : AllPostsResponse?)
+}
+
+protocol CommonSearchDelegate {
+    func onSearchResultReceived(status : String, message : String, data : CommonSearchResponse?)
 }

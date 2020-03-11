@@ -7,7 +7,6 @@
 //
 
 import ObjectMapper
-import RealmSwift
 
 class CountryDetail: Mappable {
     var countryId : String?
@@ -39,18 +38,4 @@ class CountryDetail: Mappable {
         timeZone <- map["timeZone"]
         
     }
-}
-
-class DatabaseCountryDetail: Object {
-    @objc dynamic var countryId : String = ""
-    @objc dynamic var countryName : String = ""
-    @objc dynamic var shortCode : String = ""
-    @objc dynamic var longCode : String = ""
-    @objc dynamic var callingCode : String = ""
-    @objc dynamic var timeZone : String = ""
-    
-    override class func primaryKey() -> String? {
-        return "countryId"
-    }
-    
 }
