@@ -37,7 +37,7 @@ class DiscoverVC: UIViewController, UITableViewDelegate, UITableViewDataSource ,
         CommonMethods.setTableViewSeperatorColor(tableView: tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor(white: 1, alpha: 0.1)
+//        tableView.backgroundColor = UIColor(white: 1, alpha: 0.1)
         if data.count > 0{
             noDataMessage.isHidden = true
         }else{

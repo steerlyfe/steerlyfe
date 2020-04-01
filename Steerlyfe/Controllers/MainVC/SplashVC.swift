@@ -41,6 +41,11 @@ class SplashVC: UIViewController, OnProcessCompleteDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+//        userDefault.set(true, forKey: MyConstants.LOGIN_STATUS)
+//        userDefault.set(1, forKey: MyConstants.QUESTION_SUBMITTED)
+//        userDefault.set("10021", forKey: MyConstants.USER_ID)
+//        userDefault.set("abcd", forKey: MyConstants.AUTHORIZATION)
+//        userDefault.set("abcd", forKey: MyConstants.SESSION_TOKEN)
         if userDefault.bool(forKey: MyConstants.LOGIN_STATUS){
             if userDefault.integer(forKey: MyConstants.QUESTION_SUBMITTED) == 1{
                 MyNavigations.goToMain(navigationController: navigationController)

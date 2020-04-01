@@ -47,7 +47,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Pauline Hodges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ST4-cg-pb0">
                                                 <rect key="frame" x="0.0" y="0.0" width="259" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0N-qq-avI">
@@ -63,7 +63,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miami" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjj-ZV-A3W">
                                                         <rect key="frame" x="25" y="6" width="234" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -139,7 +139,7 @@
                 <outlet property="profilePic" destination="yAt-CF-dMa" id="fCy-Le-lXP"/>
                 <outlet property="ratingView" destination="fUQ-So-ZrR" id="7ep-jz-wTf"/>
             </connections>
-            <point key="canvasLocation" x="297.82608695652175" y="121.875"/>
+            <point key="canvasLocation" x="191" y="7"/>
         </collectionViewCell>
     </objects>
     <resources>

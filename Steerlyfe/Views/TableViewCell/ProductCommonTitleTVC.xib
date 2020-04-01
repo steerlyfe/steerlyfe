@@ -27,8 +27,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="ttU-xp-fce" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="GgW-Kj-q9j"/>
                     <constraint firstAttribute="trailing" secondItem="ttU-xp-fce" secondAttribute="trailing" constant="20" id="VmK-UY-1u3"/>

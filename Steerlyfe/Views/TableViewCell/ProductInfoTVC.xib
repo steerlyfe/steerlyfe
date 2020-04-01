@@ -77,6 +77,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Q5H-gf-h5X" secondAttribute="bottom" id="MKd-Vd-OaT"/>
                     <constraint firstItem="Q5H-gf-h5X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="eiG-O0-HTS"/>

@@ -41,7 +41,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIz-9E-d1B">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="748"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SI6-d4-bo9">
@@ -49,7 +49,9 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfh-v7-e93">
                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="40"/>
-                                                        <state key="normal" title="Button"/>
+                                                        <state key="normal" title="Button">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="commonButtonPressed:" destination="Hih-cI-C0Q" eventType="touchUpInside" id="ilQ-fg-YHl"/>
                                                         </connections>
@@ -183,7 +185,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="jTS-3J-8EH" firstAttribute="leading" secondItem="9kC-DU-c2B" secondAttribute="leading" id="D4W-lH-U62"/>
                                             <constraint firstItem="jTS-3J-8EH" firstAttribute="top" secondItem="9kC-DU-c2B" secondAttribute="top" constant="15" id="GOM-cw-Kkp"/>

@@ -58,7 +58,7 @@ class ProductListTVC: UITableViewCell {
         self.productId = data?.product_id
         self.cartProductId = databaseMethods.getCartProductId(productId: self.productId)
         productName.text = data?.product_name
-        productPrice.text = "\(MyConstants.CURRENCY_SYMBOL)\(data?.sale_price ?? 0.0)"
+        productPrice.text = "\(MyConstants.CURRENCY_SYMBOL)\(CommonMethods.roundOffDouble(value: data?.sale_price ?? 0.0, roundOffDigits: 2) )"
         productDesc.text = data?.description
         if let storeName = data?.store_name {
             sellerName.isHidden = false

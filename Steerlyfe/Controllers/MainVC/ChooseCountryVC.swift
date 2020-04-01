@@ -24,7 +24,7 @@ class ChooseCountryVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.barTintColor = UIColor.colorPrimaryDark
+//        searchBar.barTintColor = UIColor.colorPrimaryDark
         countryList = databaseMethods.getAllCountries()
         searchedList = countryList
         tableView.rowHeight = UITableView.automaticDimension

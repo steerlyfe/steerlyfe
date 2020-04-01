@@ -103,7 +103,6 @@ class AddAddressTVC: UITableViewCell, UITextFieldDelegate {
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        CommonMethods.showLog(tag: TAG, message: "\(textField.text)")
         if textField == phoneNumberTextField{
             addressDetail?.phone_number = textField.text?.trimmingCharacters(in: .whitespaces)
         }else if textField == emailTextField{

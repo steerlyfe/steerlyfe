@@ -77,7 +77,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="trD-Ng-O2f" firstAttribute="leading" secondItem="QKm-Hk-MhL" secondAttribute="leading" id="3g2-dG-9fj"/>
                                             <constraint firstAttribute="trailing" secondItem="trD-Ng-O2f" secondAttribute="trailing" id="FEC-33-G3s"/>
@@ -128,7 +128,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2u-aJ-VKG">
                                                                 <rect key="frame" x="0.0" y="0.0" width="230" height="30"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dc7-kr-vjO" customClass="CosmosView" customModule="Cosmos">
@@ -176,7 +176,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="topInset">
@@ -194,7 +194,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="1O4-Vl-btV" firstAttribute="top" secondItem="K7B-nH-Mxf" secondAttribute="top" constant="10" id="N9k-g5-OQA"/>
                                             <constraint firstAttribute="bottom" secondItem="1O4-Vl-btV" secondAttribute="bottom" constant="10" id="U4T-Jw-bN0"/>
@@ -205,6 +205,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="KT3-NP-OgA" secondAttribute="bottom" id="QUc-0L-ByE"/>
                             <constraint firstItem="KT3-NP-OgA" firstAttribute="leading" secondItem="pln-gX-W7F" secondAttribute="leading" id="pU2-3K-nSm"/>
@@ -213,6 +214,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="pln-gX-W7F" secondAttribute="bottom" id="6Uh-6f-uTe"/>
                     <constraint firstItem="pln-gX-W7F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8EV-h2-oM0"/>

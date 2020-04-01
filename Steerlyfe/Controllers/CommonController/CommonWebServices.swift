@@ -539,7 +539,7 @@ class CommonWebServices {
         }
     }
     
-    func placeOrder(navigationController : UINavigationController?, total_amount : Double, discount_amount : Double, amount_paid : Double, coupon_used : Int, coupon_name : String, coupon_discount : Double, address_id : String, payment_info : String, order_info : String, delegate : OnProcessCompleteDelegate?) {
+    func placeOrder(navigationController : UINavigationController?, total_amount : Double, discount_amount : Double, amount_paid : Double, coupon_used : String, coupon_name : String, coupon_discount : Double, coupon_id : String, coupon_count : String, address_id : String, payment_info : String, order_info : String, delegate : OnProcessCompleteDelegate?) {
         setHeader()
         let para: Parameters = ["userId":self.userDefaults.string(forKey: MyConstants.USER_ID) ?? "",
                                 "sessionToken":self.userDefaults.string(forKey: MyConstants.SESSION_TOKEN) ?? "",
@@ -549,6 +549,8 @@ class CommonWebServices {
                                 "coupon_used":coupon_used,
                                 "coupon_name":coupon_name,
                                 "coupon_discount":coupon_discount,
+                                "coupon_id":coupon_id,
+                                "coupon_count":coupon_count,
                                 "address_id":address_id,
                                 "payment_info":payment_info,
                                 "order_info":order_info
@@ -1180,4 +1182,111 @@ class CommonWebServices {
         }
     }
     
+    func getCouponList(navigationController : UINavigationController?, storeIdsJsonString : String, delegate : CouponsListDelegate?) {
+        KVNProgress.show()
+        setHeader()
+        let para: Parameters = ["userId":self.userDefaults.string(forKey: MyConstants.USER_ID) ?? "",
+                                "sessionToken":self.userDefaults.string(forKey: MyConstants.SESSION_TOKEN) ?? "",
+                                "store_id_list":storeIdsJsonString
+        ]
+        CommonMethods.showLog(tag: TAG, message: "getCouponList para : \(para)")
+        CommonMethods.showLog(tag: TAG, message: "getCouponList headers :\(self.headers)")
+        Alamofire.request( URL(string: "getCouponList.php", relativeTo: baseUrl)!, method: .post, parameters:para , encoding: URLEncoding.default, headers: headers)
+            .responseObject { (responseBody : DataResponse<AllCouponsListResponse>) in
+                CommonMethods.showLog(tag: self.TAG, message: "getCouponList Response AA gya")
+                KVNProgress.dismiss {
+                    if responseBody.result.isSuccess {
+                        let body : AllCouponsListResponse = responseBody.result.value!
+                        if body.status != nil{
+                            CommonMethods.showLog(tag: self.TAG, message: "getCouponList STATUS \(body.status ?? "")")
+                            switch(body.status){
+                            case "1":
+                                delegate?.onCouponsListReceived(status: "1", message: body.message ?? "", data: body)
+                                break
+                            case "10":
+                                self.checkLoadingAndLogout(navigationController: navigationController)
+                                break
+                            default:
+                                delegate?.onCouponsListReceived(status: "0", message: body.message ?? MyConstants.STATIC_ERROR_MESSAGE, data: nil)
+                                break
+                            }
+                        }else{
+                            CommonMethods.showLog(tag: self.TAG, message: "getCouponList IS NULL")
+                            delegate?.onCouponsListReceived(status: "0", message: body.message ?? MyConstants.STATIC_ERROR_MESSAGE, data: nil)
+                        }
+                    }else{
+                        CommonMethods.showLog(tag: self.TAG, message: "getCouponList \(responseBody.result.error!)")
+                        delegate?.onCouponsListReceived(status: "0", message: MyConstants.STATIC_ERROR_MESSAGE, data: nil)
+                    }
+                }
+        }
+    }
+
+    func checkCouponWithOrder(navigationController : UINavigationController?, coupon_id : String, delegate : ApplyCouponDelegate?, closeViewController : Bool) {
+        setHeader()
+        let databaseMethods = DatabaseMethods()
+        let cartProducts = databaseMethods.getAllCartProducts()
+        var jsonCollection = [Any]()
+        for loopValue in cartProducts {
+            if let productId = loopValue.product_id{
+                jsonCollection.append(productId)
+            }
+        }
+        let orderInfoJsonString = CommonMethods.prepareJson(from: jsonCollection) ?? "[]"
+        CommonMethods.showLog(tag: TAG, message: "orderInfoJsonString : \(orderInfoJsonString)")
+        let totalAmount = CommonMethods.getTotalPrice(data: cartProducts)
+        let para: Parameters = ["userId":self.userDefaults.string(forKey: MyConstants.USER_ID) ?? "",
+                                "sessionToken":self.userDefaults.string(forKey: MyConstants.SESSION_TOKEN) ?? "",
+                                "total_amount":totalAmount,
+                                "order_info":orderInfoJsonString,
+                                "coupon_id":coupon_id
+        ]
+        CommonMethods.showLog(tag: TAG, message: "checkCouponWithOrder para : \(para)")
+        CommonMethods.showLog(tag: TAG, message: "checkCouponWithOrder headers :\(self.headers)")
+        KVNProgress.show()
+        Alamofire.request( URL(string: "checkCouponWithOrder.php", relativeTo: baseUrl)!, method: .post, parameters:para , encoding: URLEncoding.default, headers: headers)
+            .responseObject { (responseBody : DataResponse<ApplyCouponResponse>) in
+                CommonMethods.showLog(tag: self.TAG, message: "checkCouponWithOrder Response AA gya")
+                KVNProgress.dismiss {
+                    if responseBody.result.isSuccess {
+                        let body : ApplyCouponResponse = responseBody.result.value!
+                        if body.status != nil{
+                            CommonMethods.showLog(tag: self.TAG, message: "checkCouponWithOrder STATUS \(body.status ?? "")")
+                            switch(body.status){
+                            case "1":
+                                body.couponId = coupon_id
+                                if closeViewController{
+                                    KVNProgress.showSuccess(withStatus: "Coupon applied successfully") {
+                                        delegate?.onCouponApplied(applyCouponResponse: body)
+                                        CommonMethods.dismissCurrentViewController()
+                                    }
+                                }else{
+                                    delegate?.onCouponApplied(applyCouponResponse: body)
+                                }
+                                break
+                            case "0":
+                                if closeViewController{
+                                    MyNavigations.showCommonMessageDialog(message: body.message ?? MyConstants.STATIC_ERROR_MESSAGE, buttonTitle: "Ok")
+                                }else{
+                                    delegate?.onCouponApplied(applyCouponResponse: body)
+                                }
+                                break
+                            case "10":
+                                self.checkLoadingAndLogout(navigationController: navigationController)
+                                break
+                            default:
+                                MyNavigations.showCommonMessageDialog(message: MyConstants.STATIC_ERROR_MESSAGE, buttonTitle: "Ok")
+                                break
+                            }
+                        }else{
+                            CommonMethods.showLog(tag: self.TAG, message: "checkCouponWithOrder IS NULL")
+                            MyNavigations.showCommonMessageDialog(message: MyConstants.STATIC_ERROR_MESSAGE, buttonTitle: "Ok")
+                        }
+                    }else{
+                        CommonMethods.showLog(tag: self.TAG, message: "checkCouponWithOrder \(responseBody.result.error!)")
+                        MyNavigations.showCommonMessageDialog(message: MyConstants.STATIC_ERROR_MESSAGE, buttonTitle: "Ok")
+                    }
+                }
+        }
+    }
 }

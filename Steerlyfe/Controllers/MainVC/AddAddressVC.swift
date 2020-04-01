@@ -71,7 +71,7 @@ class AddAddressVC: UIViewController, UITextFieldDelegate, AddNewAddressDelegate
         CommonMethods.setTableViewSeperatorTransparentColor(tableView: tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor(white: 1, alpha: 0.1)
+//        tableView.backgroundColor = UIColor(white: 1, alpha: 0.1)
         tableView.reloadData()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)

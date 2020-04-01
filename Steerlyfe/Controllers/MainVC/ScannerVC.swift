@@ -28,7 +28,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate, Produ
         headerColor = headerColor.withAlphaComponent(0.1)
         headerView.backgroundColor = headerColor
         
-        CommonMethods.roundCornerFilledGradient(uiView: scanningLineView, cornerRadius: 2.0)
+        CommonMethods.addRoundCornerFilled(uiview: scanningLineView, borderWidth: 0.0, borderColor: UIColor.white, backgroundColor: UIColor.white, cornerRadius: 2.0)
         
         captureSession = AVCaptureSession()
         

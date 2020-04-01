@@ -33,7 +33,6 @@
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="90" id="1s9-XE-a31"/>
                                             <constraint firstItem="jN2-ea-h3F" firstAttribute="leading" secondItem="Wgy-WM-89z" secondAttribute="leading" constant="5" id="3JX-ib-DuT"/>
@@ -50,11 +49,11 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCb-Q7-rP2">
                                                         <rect key="frame" x="0.0" y="0.0" width="170" height="19.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5em-ap-vhr" customClass="CosmosView" customModule="Cosmos">
-                                                        <rect key="frame" x="0.0" y="29.5" width="170" height="12"/>
+                                                        <rect key="frame" x="0.0" y="29.5" width="170" height="50"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="rating">
                                                                 <real key="value" value="3.7000000000000002"/>
@@ -84,7 +83,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TMi-y7-gvF">
-                                                        <rect key="frame" x="0.0" y="51.5" width="170" height="30"/>
+                                                        <rect key="frame" x="0.0" y="89.5" width="170" height="30"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSe-gz-tZa">
                                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
@@ -120,13 +119,12 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vc3-gs-Oom">
-                                                        <rect key="frame" x="0.0" y="91.5" width="170" height="104.5"/>
+                                                        <rect key="frame" x="0.0" y="129.5" width="170" height="66.5"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </view>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="MOc-oI-kdy" firstAttribute="top" secondItem="4Og-Wb-1a8" secondAttribute="top" constant="5" id="FHy-Vs-ihH"/>
                                             <constraint firstAttribute="trailing" secondItem="MOc-oI-kdy" secondAttribute="trailing" constant="5" id="GgA-k1-xyE"/>
@@ -137,7 +135,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zzy-Re-ucn" firstAttribute="top" secondItem="QsO-dH-t2z" secondAttribute="top" constant="5" id="Mwg-UL-O0i"/>
                             <constraint firstItem="zzy-Re-ucn" firstAttribute="leading" secondItem="QsO-dH-t2z" secondAttribute="leading" constant="5" id="U1B-gd-uV1"/>

@@ -49,16 +49,16 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func checkAndSHowRateButton() {
-        rateNowButton.isHidden = false
-//        if orderDetail?.order_status == MyConstants.ORDER_STATUS_COMPLETED{
-//            if orderDetail?.order_rating == 0.0{
-//                rateNowButton.isHidden = false
-//            }else{
-//                rateNowButton.isHidden = true
-//            }
-//        }else{
-//            rateNowButton.isHidden = true
-//        }
+//        rateNowButton.isHidden = false
+        if orderDetail?.order_status == MyConstants.ORDER_STATUS_COMPLETED{
+            if orderDetail?.order_rating == 0.0{
+                rateNowButton.isHidden = false
+            }else{
+                rateNowButton.isHidden = true
+            }
+        }else{
+            rateNowButton.isHidden = true
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

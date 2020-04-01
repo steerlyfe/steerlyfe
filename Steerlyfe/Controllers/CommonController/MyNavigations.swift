@@ -156,6 +156,13 @@ class MyNavigations {
         }
     }
     
+    public static func goToCouponList(navigationController : UINavigationController?, applyCouponDelegate : ApplyCouponDelegate?) {
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CouponListVC") as? CouponListVC {
+            viewController.applyCouponDelegate = applyCouponDelegate
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
     public static func goToRateOrder(navigationController : UINavigationController?, order_id : String?, delegate : OnProcessCompleteDelegate?) {
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RateOrderVC") as? RateOrderVC {
             viewController.order_id = order_id

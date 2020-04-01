@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,25 +14,25 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="75.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1SY-oV-5Q3">
-                        <rect key="frame" x="5" y="5" width="310" height="65.5"/>
+                        <rect key="frame" x="5" y="5" width="310" height="66"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G4t-Dx-ule">
-                                <rect key="frame" x="5" y="10" width="300" height="45.5"/>
+                                <rect key="frame" x="5" y="10" width="300" height="46"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="c7E-qn-zLM">
-                                        <rect key="frame" x="0.0" y="0.0" width="230" height="45.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="46"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eph-ZR-ew3">
-                                                <rect key="frame" x="0.0" y="0.0" width="40" height="45.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="46"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IND" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYx-KX-l4y">
-                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="45.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="46"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -48,26 +46,26 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="India" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuT-76-Zmf">
-                                                <rect key="frame" x="45" y="0.0" width="185" height="45.5"/>
+                                                <rect key="frame" x="45" y="0.0" width="185" height="46"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="+91" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXq-mo-pcD">
-                                        <rect key="frame" x="240" y="0.0" width="60" height="45.5"/>
+                                        <rect key="frame" x="240" y="0.0" width="60" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="MLr-5q-pQt"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wc5-cs-5nf">
-                                <rect key="frame" x="0.0" y="0.0" width="310" height="65.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="310" height="66"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="10O-Ka-83D"/>
                                 </connections>
@@ -86,6 +84,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="1SY-oV-5Q3" secondAttribute="bottom" constant="5" id="B5G-SI-Jfr"/>
                     <constraint firstItem="1SY-oV-5Q3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Y1h-Fd-Cxh"/>

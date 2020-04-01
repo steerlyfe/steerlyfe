@@ -93,3 +93,11 @@ protocol AllPostsDelegate {
 protocol CommonSearchDelegate {
     func onSearchResultReceived(status : String, message : String, data : CommonSearchResponse?)
 }
+
+protocol CouponsListDelegate {
+    func onCouponsListReceived(status : String, message : String, data : AllCouponsListResponse?)
+}
+
+protocol ApplyCouponDelegate {
+    func onCouponApplied(applyCouponResponse : ApplyCouponResponse?)
+}

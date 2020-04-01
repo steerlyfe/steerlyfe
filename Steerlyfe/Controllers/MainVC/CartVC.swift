@@ -8,7 +8,8 @@
 import UIKit
 import KVNProgress
 
-class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ButtonPressedAtPositionDelegate, RefreshProductsListDelegate, ChooseAddressDelegate, AddressListDelegate, ConfirmationDialogDelegate, OnProcessCompleteDelegate{
+class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ButtonPressedAtPositionDelegate, RefreshProductsListDelegate, ChooseAddressDelegate, AddressListDelegate, ConfirmationDialogDelegate, OnProcessCompleteDelegate, ApplyCouponDelegate{
+    
     
     let TAG = "CartVC"
     let databaseMethods = DatabaseMethods()
@@ -18,14 +19,14 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Butt
     var mainControllerDelegate : OnProcessCompleteDelegate?
     var showBackArrow : Bool = false
     var selectedAddress : AddressDetail?
-    var couponUsed = 0
-    var couponName = ""
-    var couponDiscount = 0.0
+    var couponApplied = false
+    var appliedCouponDetail : ApplyCouponResponse?
     
+    @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var applyCouponButton: UIButton!
+    @IBOutlet weak var applyCouponView: UIView!
     @IBOutlet weak var backArrowView: UIView!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomView: UIView!
-    @IBOutlet weak var promoCodeView: UIView!
     @IBOutlet weak var itemCountLabel: UILabel!
     @IBOutlet weak var checkoutView: UIView!
     @IBOutlet weak var noDataMessage: UILabel!
@@ -33,10 +34,8 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Butt
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CommonMethods.addRoundCornerFilled(uiview: promoCodeView, borderWidth: 1.0, borderColor: UIColor.myLineColor, backgroundColor: UIColor.white, cornerRadius: promoCodeView.frame.height / 2.0)
+        CommonMethods.addRoundCornerFilled(uiview: applyCouponView, borderWidth: 0.0, borderColor: UIColor.black, backgroundColor: UIColor.black, cornerRadius: applyCouponView.frame.height / 2.0)
         CommonMethods.addRoundCornerFilled(uiview: checkoutView, borderWidth: 0.0, borderColor: UIColor.black, backgroundColor: UIColor.black, cornerRadius: checkoutView.frame.height / 2.0)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,7 +83,7 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Butt
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TotalPriceTVC", for: indexPath) as! TotalPriceTVC
-            cell.totalPriceLabel.text = "\(MyConstants.CURRENCY_SYMBOL)\(getTotalPrice())"
+            cell.setDetail(cartProducts: data, couponApplied: couponApplied, appliedCouponDetail: appliedCouponDetail)
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
@@ -132,36 +131,14 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Butt
         return required
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if keyboardSize == 0{
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                self.keyboardSize = keyboardSize.height
-            }
-        }
-        bottomConstraint.constant = keyboardSize
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        bottomConstraint.constant = 10
-    }
-    
-    func getTotalPrice() -> Double {
-        var price = 0.0
-        data.forEach { (productDetail) in
-            let salePrice = productDetail.sale_price ?? 0.0
-            let additionalFeaturePrice = productDetail.additional_feature_price ?? 0.0
-            let additionalCharges = productDetail.additional_charges ?? 0.0
-            let quantity = Double(productDetail.quantity ?? 0) 
-            price = price + ( (salePrice + additionalFeaturePrice) * quantity ) + additionalCharges
-        }
-        return CommonMethods.roundOffDouble(value: price, roundOffDigits: 2)
-    }
-    
     func refreshData() {
         data = databaseMethods.getAllCartProducts()
         tableView.reloadData()
         mainControllerDelegate?.onProcessComplete(type: MyConstants.REFRESH_CART_DATA, status: "1", message: "")
         checkAndUpdateView()
+        if couponApplied{
+            CommonWebServices.api.checkCouponWithOrder(navigationController: navigationController, coupon_id: appliedCouponDetail?.couponId ?? "", delegate: self,  closeViewController: false)
+        }
     }
     
     func checkAndUpdateView()  {
@@ -173,10 +150,17 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Butt
         }
         if data.count > 0{
             noDataMessage.isHidden = true
-            bottomView.isHidden = false
+            //            bottomView.isHidden = false
+            bottomViewHeight.constant = 110.0
         }else{
             noDataMessage.isHidden = false
-            bottomView.isHidden = true
+            //            bottomView.isHidden = true
+            bottomViewHeight.constant = 0.0
+        }
+        if couponApplied{
+            applyCouponButton.setTitle("Remove Coupon".uppercased(), for: .normal)
+        }else{
+            applyCouponButton.setTitle("Apply Coupon".uppercased(), for: .normal)
         }
     }
     
@@ -261,10 +245,11 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Butt
         }
         let finalJson = CommonMethods.prepareJson(from: jsonCollection) ?? "[]"
         CommonMethods.showLog(tag: TAG, message: "finalJson : \(finalJson)")
-        let totalAmount = getTotalPrice()
+        let totalAmount = CommonMethods.getTotalPrice(data: data)
         let discountAmount = 0.0
-        let amountPaid = totalAmount - discountAmount - couponDiscount
-        CommonWebServices.api.placeOrder(navigationController: navigationController, total_amount: totalAmount, discount_amount: discountAmount, amount_paid: amountPaid, coupon_used: couponUsed, coupon_name: couponName, coupon_discount: couponDiscount, address_id: selectedAddress?.address_id ?? "", payment_info: "[]", order_info: finalJson, delegate: self)
+        let amountPaid = totalAmount - discountAmount - (appliedCouponDetail?.discountAmount ?? 0.0)
+//        CommonWebServices.api.placeOrder(navigationController: navigationController, total_amount: totalAmount, discount_amount: discountAmount, amount_paid: amountPaid, coupon_used: couponUsed, coupon_name: couponName, coupon_discount: couponDiscount, address_id: selectedAddress?.address_id ?? "", payment_info: "[]", order_info: finalJson, delegate: self)
+        CommonWebServices.api.placeOrder(navigationController: navigationController, total_amount: totalAmount, discount_amount: discountAmount, amount_paid: amountPaid, coupon_used: couponApplied ? MyConstants.YES : MyConstants.NO, coupon_name: appliedCouponDetail?.couponCode ?? "", coupon_discount: couponApplied ? appliedCouponDetail?.discountAmount ?? 0.0 : 0.0, coupon_id: couponApplied ? appliedCouponDetail?.couponId ?? "" : "0", coupon_count: appliedCouponDetail?.couponCountCheck ?? MyConstants.NO, address_id: selectedAddress?.address_id ?? "", payment_info: "[]", order_info: finalJson, delegate: self)
     }
     
     func onProcessComplete(type: String, status: String, message: String) {
@@ -304,6 +289,30 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Butt
         Press continue to use this address.
         """
         CommonAlertMethods.showConfirmationAlert(navigationController: self.navigationController, title: MyConstants.APP_NAME, message: message, yesText: "Continue", noString: "Change Address", delegate: self)
+    }
+    
+    @IBAction func applyCouponPressed(_ sender: Any) {
+        if couponApplied{
+            couponApplied = false
+            tableView.reloadData()
+            applyCouponButton.setTitle("Apply Coupon".uppercased(), for: .normal)
+        }else{
+            MyNavigations.goToCouponList(navigationController: navigationController, applyCouponDelegate: self)
+        }
+    }
+    
+    func onCouponApplied(applyCouponResponse: ApplyCouponResponse?) {
+        switch(applyCouponResponse?.status ?? ""){
+        case "1":
+            couponApplied = true
+            self.appliedCouponDetail = applyCouponResponse
+            tableView.reloadData()
+            break
+        default:
+            couponApplied = false
+            tableView.reloadData()
+            break
+        }
     }
     
 }

@@ -41,7 +41,7 @@ class OrderListTVC: UITableViewCell {
         if data.order_info.count == 1{
             itemText = "Item"
         }
-        priceInfoLabel.text = "\(MyConstants.CURRENCY_SYMBOL)\(CommonMethods.roundOffDouble(value: data.total_amount ?? 0.00, roundOffDigits: 2)). \(data.order_info.count) \(itemText)"
+        priceInfoLabel.text = "\(MyConstants.CURRENCY_SYMBOL)\(CommonMethods.roundOffDouble(value: data.amount_paid ?? 0.00, roundOffDigits: 2)). \(data.order_info.count) \(itemText)"
         if data.order_status == MyConstants.ORDER_STATUS_PENDING{
             statusLabel.text = "Pending"
             statusLabel.textColor = UIColor.orange

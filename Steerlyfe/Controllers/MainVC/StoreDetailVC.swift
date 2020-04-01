@@ -52,7 +52,7 @@ class StoreDetailVC: UIViewController, StoreDetailDelegate, UITableViewDelegate,
         //        tableView.register(UINib(nibName: "CommonButtonTVC", bundle: nil), forCellReuseIdentifier: "CommonButtonTVC")
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor(white: 1.0, alpha: 0.0)
+        tableView.backgroundColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {

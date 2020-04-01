@@ -44,7 +44,7 @@ class FavouriteProductsVC: UIViewController, UITableViewDelegate, UITableViewDat
         CommonMethods.setTableViewSeperatorTransparentColor(tableView: tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        tableView.backgroundColor = UIColor.white
         tableView.reloadData()
     }
     

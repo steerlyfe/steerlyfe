@@ -32,7 +32,7 @@ class TrendingProductsCVC: UICollectionViewCell {
         self.delegate = delegate
         self.position = position
         productName.text = productDetail?.product_name
-        productPrice.text = "\(MyConstants.CURRENCY_SYMBOL)\(productDetail?.sale_price ?? 0.0)"
+        productPrice.text = "\(MyConstants.CURRENCY_SYMBOL)\(CommonMethods.roundOffDouble(value: productDetail?.sale_price ?? 0.0, roundOffDigits: 2) )"
         productImage.sd_setImage(with: URL(string: productDetail?.image_url ?? "" )) { (image, error, cacheType, url) in
         }
         if databaseMethods.isProductFavourite(productId: productDetail?.product_id ?? "") ?? false{

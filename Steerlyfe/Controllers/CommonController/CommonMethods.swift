@@ -269,6 +269,7 @@ class CommonMethods {
     }
     
     public static func setGradient(uiLabel:UILabel, startColor : UIColor, endColor : UIColor){
+        
         let gradient = CAGradientLayer()
         
         gradient.colors = [startColor.cgColor, endColor.cgColor]
@@ -522,5 +523,17 @@ class CommonMethods {
         ]
         navigationController?.present(activityViewController, animated: true, completion:{
         })
+    }
+    
+    public static func getTotalPrice(data : [CartProductDetail]) -> Double {
+        var price = 0.0
+        data.forEach { (productDetail) in
+            let salePrice = productDetail.sale_price ?? 0.0
+            let additionalFeaturePrice = productDetail.additional_feature_price ?? 0.0
+            let additionalCharges = productDetail.additional_charges ?? 0.0
+            let quantity = Double(productDetail.quantity ?? 0)
+            price = price + ( (salePrice + additionalFeaturePrice) * quantity ) + additionalCharges
+        }
+        return CommonMethods.roundOffDouble(value: price, roundOffDigits: 2)
     }
 }

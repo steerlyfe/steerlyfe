@@ -84,6 +84,10 @@ class MyConstants {
     static let COMMON_PRODUCT_LIST = "common_product_list"
     static let STORE_MENU = "store_menu"
     static let LOAD_REVIEWS = "load_reviews"
+    static let APPLY_COUPON = "ApplyCoupon"
+    static let DISCOUNT_TYPE_AMOUNT = "amount"
+    static let YES = "yes"
+    static let NO = "no"
     
 //    static let AUTH_VERIFICATION_ID = "authVerificationID"
     static var termsAndConditionsURL: URL {
